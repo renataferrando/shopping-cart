@@ -1,0 +1,35 @@
+.btn {
+  min-width: 80px;
+  padding: 15px;
+  background-color: black;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+  border: 2px solid black;
+  cursor: pointer;
+  &:active {
+    background-color: #fff;
+    color: black;
+    border: 2px solid black;
+  }
+  &:hover {
+    opacity: 80%;
+  }
+  &.--medium {
+    font-size: 14px;
+    padding: 11px;
+  }
+  &.--small {
+    font-size: 12px;
+    padding: 8px;
+
+  }
+  &.--disabled {
+		opacity: 0.6;
+		&:active {
+      background-color: #000;
+      color: #fff;
+    }
+	}
+}

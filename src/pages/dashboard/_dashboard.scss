@@ -1,0 +1,25 @@
+.dashboard-wrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    align-self: center;
+    .options {
+        display: flex;
+        justify-content: center;
+        padding: 20px;
+        gap: 40px;
+       
+    }
+    .delete-product{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        input {
+            border: solid 1px #000;
+            min-height: 30px;
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+}

@@ -1,0 +1,30 @@
+.product-layout {
+  display: flex;
+  flex-direction: row;
+  .navigation {
+    margin-right: 60px;
+  }
+  .products {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  .nav {
+    margin-top: 50px;
+  }
+  @media only screen and (max-width: 1024px) {
+    .products {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    .products {
+      grid-template-columns: 1fr;
+      max-width: 300px;
+    }
+    .navigation {
+      width: auto;
+      margin-right: 10px;
+    }
+  }
+}

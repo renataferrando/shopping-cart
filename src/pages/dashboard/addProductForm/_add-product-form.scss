@@ -1,0 +1,28 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    min-width: 500px;
+    justify-content: center;
+    padding: 20px;
+    .error-message {
+        color: red;
+        font-size: 12px;
+        margin-top: 8px;
+      }
+    input {
+        border: solid 1px #000;
+        min-height: 30px;
+        &:focus {
+            outline: none;
+        }
+    }
+    label {
+        margin-bottom: 6px;
+    }
+    textarea {
+        margin-bottom: 20px;
+    }
+    button {
+        cursor: pointer;
+    }
+}

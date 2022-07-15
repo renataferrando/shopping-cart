@@ -1,0 +1,36 @@
+.cart {
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+  padding: 20px 40px;
+  gap:20px;
+  h4 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  .cart-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-end;
+    justify-content: space-between;
+    p {
+      font-size: 13px;
+      margin: 0;
+    }
+    h5 {
+      margin-bottom: 8px;
+      margin-top: 0;
+      // max-width: 150px;
+    }
+    .image {
+      width: 100px;
+      height: 100px;
+      background-color: #ccc;
+    }
+    .delete {
+      text-decoration: underline;
+      color: rgb(231, 67, 67);
+      cursor: pointer;
+    }
+  }
+}

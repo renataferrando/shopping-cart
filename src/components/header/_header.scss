@@ -1,0 +1,28 @@
+.header {
+  display: flex;
+  border-bottom: solid 0.5px rgb(155, 152, 152);
+  align-items: center;
+  justify-content: space-around;
+  svg {
+    margin-top: 8px;
+    cursor: pointer;
+  }
+  .cart-icon {
+    display: flex;
+  }
+  .item-indicator{
+    background-color: #000;
+    color: #fff;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .nav-links, .logo {
+    cursor: pointer;
+  }
+}
+

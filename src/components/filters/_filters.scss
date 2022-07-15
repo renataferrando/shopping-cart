@@ -1,0 +1,38 @@
+.filters {
+    margin-right: 50px;
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+    align-self: flex-start;
+    position: sticky;
+    top:0;
+    label {
+        display: inline-flex;
+        align-items: baseline;
+        text-transform: capitalize;
+    }
+    h4 {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+    p {
+        font-weight: bold;
+    }
+    @media only screen and (max-width: 768px) {
+        min-width: unset;
+        margin-right: 0 !important;
+        
+    }
+    button {
+        margin-top: 15px;
+        width: 60%;
+    } 
+    .clear-btn {
+        cursor: pointer;
+        margin-top: 10px;
+        color: #02599e;
+        font-size: 12px;
+        text-decoration: underline;
+    }
+  }
+  
