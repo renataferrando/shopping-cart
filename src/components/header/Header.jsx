@@ -26,7 +26,6 @@ const Header = () => {
             width="20"
             height="20"
             fill="currentColor"
-            class="bi bi-bag"
             viewBox="0 0 16 16"
             onClick={() => {
               setCartOpen(true);

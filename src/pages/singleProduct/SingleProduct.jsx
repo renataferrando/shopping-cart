@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { getProduct } from "../../redux/features/singleProductSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -24,7 +24,7 @@ const SingleProduct = () => {
   }, [dispatch, id]);
 
   const handleAddToCart = (product) => {
-    if (qtySelected === 0 && sizeSelected === null) {
+    if (qtySelected === 0 || sizeSelected === null) {
       alert("select size");
     } else {
       dispatch(addToCart(product));
@@ -63,7 +63,7 @@ const SingleProduct = () => {
                     -
                   </option>
                   {product.size.map((item) => (
-                    <option>{item}</option>
+                    <option key={item}>{item}</option>
                   ))}
                 </select>
               )}
@@ -76,7 +76,9 @@ const SingleProduct = () => {
                   { length: product.countInStock },
                   (_, index) => index + 1
                 ).map((item) => (
-                  <option value={item}>{item}</option>
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
                 ))}
               </select>{" "}
             </div>
