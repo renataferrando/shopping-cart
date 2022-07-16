@@ -16,17 +16,16 @@ const SingleProduct = () => {
   const dispatch = useDispatch();
   const { product } = useSelector((store) => store.product);
   const { loading } = useSelector((store) => store.loading);
-  const { selectedQty } = useSelector((store) => store.cart);
+  const { qtySelected } = useSelector((store) => store.cart);
   const { sizeSelected } = useSelector((store) => store.cart);
-  const [disabled, setDisabled] = useState(true);
 
   useEffect(() => {
     dispatch(getProduct(id));
   }, [dispatch, id]);
 
   const handleAddToCart = (product) => {
-    if (disabled === true) {
-      return;
+    if (qtySelected === 0 && sizeSelected === null) {
+      alert("select size");
     } else {
       dispatch(addToCart(product));
     }
@@ -40,10 +39,9 @@ const SingleProduct = () => {
   };
 
   useEffect(() => {
-    if (selectedQty !== 0 && sizeSelected !== null) {
-      setDisabled(false);
-    }
-  }, [sizeSelected, selectedQty]);
+    dispatch(setQuantity(0));
+    dispatch(setSize(null));
+  }, [id]);
 
   return (
     <>
@@ -65,9 +63,7 @@ const SingleProduct = () => {
                     -
                   </option>
                   {product.size.map((item) => (
-                    <option selected={sizeSelected === item ? true : false}>
-                      {item}
-                    </option>
+                    <option>{item}</option>
                   ))}
                 </select>
               )}
@@ -80,12 +76,7 @@ const SingleProduct = () => {
                   { length: product.countInStock },
                   (_, index) => index + 1
                 ).map((item) => (
-                  <option
-                    selected={selectedQty === item ? true : false}
-                    value={item}
-                  >
-                    {item}
-                  </option>
+                  <option value={item}>{item}</option>
                 ))}
               </select>{" "}
             </div>
@@ -93,7 +84,6 @@ const SingleProduct = () => {
               onClick={() => handleAddToCart(product)}
               label="Add to cart"
               size="medium"
-              disabled={disabled}
             />
           </div>
         </div>

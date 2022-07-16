@@ -12,7 +12,9 @@
     display: flex;
     gap: 20px;
     align-items: flex-end;
-    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: solid 0.5px #ccc;
+   
     p {
       font-size: 13px;
       margin: 0;
@@ -23,9 +25,10 @@
       // max-width: 150px;
     }
     .image {
-      width: 100px;
+      min-width: 100px;
       height: 100px;
       background-color: #ccc;
+      align-self: center;
     }
     .delete {
       text-decoration: underline;

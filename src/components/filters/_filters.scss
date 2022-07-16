@@ -6,6 +6,11 @@
     align-self: flex-start;
     position: sticky;
     top:0;
+    @media screen and (max-width: 768px) {
+        margin-right: 20px;
+        min-width: unset;
+    }
+
     label {
         display: inline-flex;
         align-items: baseline;
@@ -18,11 +23,7 @@
     p {
         font-weight: bold;
     }
-    @media only screen and (max-width: 768px) {
-        min-width: unset;
-        margin-right: 0 !important;
-        
-    }
+
     button {
         margin-top: 15px;
         width: 60%;

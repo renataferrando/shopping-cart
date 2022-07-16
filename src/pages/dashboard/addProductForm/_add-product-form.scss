@@ -4,6 +4,9 @@
     min-width: 500px;
     justify-content: center;
     padding: 20px;
+    @media screen and (max-width: 768px) {
+        min-width: unset;
+    }
     .error-message {
         color: red;
         font-size: 12px;

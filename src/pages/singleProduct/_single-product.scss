@@ -10,9 +10,16 @@
         display: flex;
         justify-content: space-around;
         gap: 30px;
+        @media screen and (max-width: 768px) {
+            flex-direction: column;
+        }
     }
     .top-right {
         max-width: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: flex-start;
         h2 {
             margin-top: 0;
         }
@@ -25,6 +32,10 @@
         }
         select {
             margin-right: 10px;
+            border: solid 1px #000;
+            &:focus {
+                outline: none;
+            }
         }
         .btn {
             margin-top: 30px;

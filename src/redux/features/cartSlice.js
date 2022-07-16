@@ -4,7 +4,7 @@ const initialState = {
   cartItems: localStorage.getItem("cartItems")
     ? JSON.parse(localStorage.getItem("cartItems"))
     : [],
-  selectedQty: 0,
+  qtySelected: 0,
   sizeSelected: null,
   cartTotalQty: 0,
   cartTotalAmount: 0,
@@ -20,11 +20,11 @@ const cartSlice = createSlice({
           item.sizeSelected === state.sizeSelected
       );
       if (itemIndex >= 0) {
-        state.cartItems[itemIndex].productQty += state.selectedQty;
+        state.cartItems[itemIndex].productQty += state.qtySelected;
       } else {
         const newProduct = {
           ...action.payload,
-          productQty: state.selectedQty,
+          productQty: state.qtySelected,
           sizeSelected: state.sizeSelected,
         };
         state.cartItems.push(newProduct);
@@ -32,7 +32,7 @@ const cartSlice = createSlice({
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
     setQuantity(state, action) {
-      state.selectedQty = action.payload;
+      state.qtySelected = action.payload;
     },
     setSize(state, action) {
       state.sizeSelected = action.payload;
