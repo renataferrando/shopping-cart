@@ -1,0 +1,18 @@
+.drawer-container .succes-registration {
+  min-width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  h4 {
+    font-size: 24px;
+    margin: 0;
+  }
+  button {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+  #check {
+    stroke-dasharray: 50;
+  }
+}

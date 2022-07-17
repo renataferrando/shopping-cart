@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import Button from "../../components/button/Button";
 import AddProductForm from "./addProductForm/AddProductForm";
+import SuccessModal from "../../components/successModal/SuccessModal";
 import "./_dashboard.scss";
 
 const Dashboard = () => {
@@ -50,7 +51,19 @@ const Dashboard = () => {
           />
         </div>
       )}
-      {deletedSuccess && <p>Deleted!</p>}
+      {deletedSuccess && (
+        <SuccessModal
+          title="Product deleted successfully!"
+          btnLabel="Ok"
+          isOpen={true}
+          onClose={() => {
+            setDeletedSuccess(false);
+          }}
+          onClick={() => {
+            setDeletedSuccess(false);
+          }}
+        />
+      )}
     </div>
   );
 };

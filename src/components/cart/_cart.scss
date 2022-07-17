@@ -36,4 +36,17 @@
       cursor: pointer;
     }
   }
+ .price {
+  .item-price {
+    margin-bottom: 30px;
+    font-weight: bold;
+  }
+ }
+  .subtotal {
+    display: flex;
+    justify-content: flex-end;
+    p {
+      font-weight: bold;
+    }
+  }
 }

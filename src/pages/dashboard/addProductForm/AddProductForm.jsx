@@ -1,26 +1,29 @@
-import React, { useState } from "react";
+import React from "react";
 import Button from "../../../components/button/Button";
 import { useForm } from "react-hook-form";
 import schema from "./createProductSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
-import axios from "axios";
+import { createNewProducts } from "../../../redux/features/adminSlice";
+import { useDispatch, useSelector } from "react-redux";
+import SuccessModal from "../../../components/successModal/SuccessModal";
+import { resetPostState } from "../../../redux/features/adminSlice";
 import "./_add-product-form.scss";
+
 const AddProductForm = () => {
-  const [success, setSuccess] = useState(false);
-  const [error, setError] = useState(false);
+  const { status, error } = useSelector((store) => store.newProducts);
+  const dispatch = useDispatch();
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     mode: "onChange",
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = async (data) => {
-    console.log(data);
-    const id = data.id;
+  const onSubmit = (data) => {
     const name = data.name;
     const brand = data.brand;
     const price = data.price;
@@ -29,10 +32,8 @@ const AddProductForm = () => {
     const gender = data.gender;
     const countInStock = data.countInStock;
     const description = data.description;
-
-    await axios
-      .post("http://localhost:3001/products", {
-        id,
+    dispatch(
+      createNewProducts({
         name,
         brand,
         price,
@@ -42,11 +43,11 @@ const AddProductForm = () => {
         countInStock,
         description,
       })
-      .then((response) => {
-        console.log(response);
-        setSuccess(true);
-      })
-      .catch((error) => setError(error.message), console.log(error));
+    );
+  };
+  const handleResetForm = () => {
+    dispatch(resetPostState("idle"));
+    reset();
   };
 
   return (
@@ -54,9 +55,6 @@ const AddProductForm = () => {
       <label htmlFor="">Product Name</label>
       <input type="text" name="name" {...register("name")} />
       <p className="error-message">{errors.name?.message}</p>
-      <label htmlFor="">Id</label>
-      <input type="text" name="id" {...register("id")} />
-      <p className="error-message">{errors.id?.message}</p>
       <label htmlFor="">Brand</label>
       <input type="text" name="brand" {...register("brand")} />
       <p className="error-message">{errors.brand?.message}</p>
@@ -80,8 +78,17 @@ const AddProductForm = () => {
       <p className="error-message">{errors.description?.message}</p>
 
       <Button label="Add" size="small" type="submit" />
-      {error && <p>Sorry, something went wrong: {error}</p>}
-      {success && <p>Succeded! Product was succesfully added</p>}
+      {status === "failed" && <p>Sorry, something went wrong: {error}</p>}
+      {status === "succeeded" && (
+        <SuccessModal
+          title="Product added successfully!"
+          text="Add another product or continue shopping"
+          btnLabel="Ok"
+          isOpen={true}
+          onClose={handleResetForm}
+          onClick={handleResetForm}
+        />
+      )}
     </form>
   );
 };

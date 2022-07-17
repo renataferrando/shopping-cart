@@ -3,30 +3,33 @@ import axios from "axios";
 
 const initialState = {
   product: [],
-  loading: false,
+  productLoading: false,
   error: "",
 };
 
-export const getProduct = createAsyncThunk("products/getProduct", (id) => {
-  return axios
-    .get(`http://localhost:3001/products/${id}`)
-    .then((response) => response.data);
-});
+export const getProduct = createAsyncThunk(
+  "products/getProduct",
+  async (id) => {
+    return axios
+      .get(`http://localhost:3001/products/${id}`)
+      .then((response) => response.data);
+  }
+);
 
 const SingleproductSlice = createSlice({
   name: "product",
   initialState,
   extraReducers: (builder) => {
     builder.addCase(getProduct.pending, (state) => {
-      state.loading = true;
+      state.productLoading = true;
     });
     builder.addCase(getProduct.fulfilled, (state, action) => {
-      state.loading = false;
+      state.productLoading = false;
       state.product = action.payload;
       state.error = "";
     });
     builder.addCase(getProduct.rejected, (state, action) => {
-      state.loading = false;
+      state.productLoading = false;
       state.product = [];
       state.error = action.error.message;
     });

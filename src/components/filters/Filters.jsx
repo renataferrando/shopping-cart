@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Checkmark from "../checkmark/Checkmark";
 import { useSearchParams } from "react-router-dom";
-import Button from "../button/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { getFilteredProducts } from "../../redux/features/productSlice";
 import "./_filters.scss";
@@ -12,7 +11,6 @@ const Filters = () => {
   const [categoriesChecked, setCategoriesChecked] = useState([]);
 
   const { products } = useSelector((store) => store.products);
-  console.log(products);
 
   const brands = products
     .map((item) => item.brand)
@@ -48,55 +46,20 @@ const Filters = () => {
       setCategoriesChecked(updatedCategories);
     }
 
-    // if (checked) {
-    //   searchParams.append(name, value);
-    //   setSearchParams(searchParams);
-    //   categoriesChecked.push(value);
-    // } else if (!checked) {
-    //   searchParams.delete(name, value);
-    //   setSearchParams(searchParams);
-    //   categoriesChecked.shift(value);
-    // }
-
     dispatch(getFilteredProducts(searchParams));
   };
 
-  // const handleSorting = (e) => {
-  //   const { value, checked, name } = e.target;
-  //   if (checked) {
-  //     searchParams.append("_sort", name);
-  //     searchParams.append("_order", value);
-  //     setSearchParams(searchParams);
-  //   } else if (!checked) {
-  //     searchParams.delete("_sort", name);
-  //     searchParams.delete("_order", value);
-  //     setSearchParams(searchParams);
-  //   }
-  //   dispatch(getFilteredProducts(searchParams));
-  // };
   const resetState = () => {
     setCategoriesChecked([]);
   };
   return (
     <div className="filters">
       <h4>Filters</h4>
-      {/* <p>Sort by price</p>
-      <Checkmark
-        label="High to low"
-        value="desc"
-        name="price"
-        onChange={handleSorting}
-      />
-      <Checkmark
-        label="Low to High"
-        value="asc"
-        name="price"
-        onChange={handleSorting}
-      /> */}
       <>
         <p>Gender</p>
         {genders.map((item) => (
           <Checkmark
+            key={item}
             name="gender"
             label={item}
             value={item}
@@ -120,6 +83,7 @@ const Filters = () => {
         <p>Category</p>
         {categories.map((item) => (
           <Checkmark
+            key={item}
             label={item}
             name="category"
             value={item}

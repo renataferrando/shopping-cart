@@ -4,18 +4,24 @@ import Drawer from "../drawer/Drawer";
 import useWindowSize from "../../hooks/useWindowSize";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteItem } from "../../redux/features/cartSlice";
+import { getTotals } from "../../redux/features/cartSlice";
+import { useEffect } from "react";
 
 const Cart = ({ cartOpen, cartClose }) => {
   const [height, width] = useWindowSize();
   const isMobile = width < 391;
-  const { cartItems } = useSelector((store) => store.cart);
+  const { cartItems, cartTotalAmount } = useSelector((store) => store.cart);
+
   const dispatch = useDispatch();
 
   const handleDelete = (item) => {
     dispatch(deleteItem(item));
   };
 
-  console.log(cartItems);
+  useEffect(() => {
+    dispatch(getTotals());
+  }, [cartItems]);
+
   return (
     <Drawer
       className="cart"
@@ -41,16 +47,24 @@ const Cart = ({ cartOpen, cartClose }) => {
             <p>Size: {item.sizeSelected}</p>
             <p>Quantity: {item.productQty}</p>
           </div>
-          <p
-            className="delete"
-            onClick={() => {
-              handleDelete(item);
-            }}
-          >
-            Delete
-          </p>
+          <div className="price">
+            <p className="item-price">
+              ${""} {item.productQty * item.price}
+            </p>
+            <p
+              className="delete"
+              onClick={() => {
+                handleDelete(item);
+              }}
+            >
+              Delete
+            </p>
+          </div>
         </div>
       ))}
+      <div className="subtotal">
+        <p>Subtotal: ${cartTotalAmount}</p>
+      </div>
     </Drawer>
   );
 };

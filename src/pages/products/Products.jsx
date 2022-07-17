@@ -12,8 +12,7 @@ const Products = ({ noResults }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { products } = useSelector((store) => store.products);
-  const { loading } = useSelector((store) => store.loading);
+  const { products, productsLoading } = useSelector((store) => store.products);
 
   useEffect(() => {
     dispatch(getProducts());
@@ -21,13 +20,13 @@ const Products = ({ noResults }) => {
 
   return (
     <div className="products-page">
-      {loading && <Loading />}
+      {productsLoading && <Loading />}
       <h1>Products</h1>
       <div className="wrapper">
         <Filters />
         <div className="products">
           <ProductsLayout>
-            {loading && <Loading />}
+            {productsLoading && <Loading />}
             {noResults && (
               <div>
                 No results where found, try a diffrent search,{" "}

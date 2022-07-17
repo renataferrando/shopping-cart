@@ -14,8 +14,7 @@ import {
 const SingleProduct = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { product } = useSelector((store) => store.product);
-  const { loading } = useSelector((store) => store.loading);
+  const { product, productLoading } = useSelector((store) => store.product);
   const { qtySelected } = useSelector((store) => store.cart);
   const { sizeSelected } = useSelector((store) => store.cart);
 
@@ -45,7 +44,7 @@ const SingleProduct = () => {
 
   return (
     <>
-      {loading && <Loading />}
+      {productLoading && <Loading />}
       <div className="single-product-wrapper">
         <div className="top">
           <div className="full-image"></div>
